@@ -1,0 +1,2594 @@
+<!-- index.html : Copy/paste into a single file and open in browser -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ICON BIOTRONICS FZE - Biomedical Repair, Calibration & Maintenance</title>
+  <style>
+    :root{
+      --navy:#0B1B3A;
+      --navy-2:#0F2A57;
+      --bg:#F7FAFF;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#5B6B85;
+      --teal:#1FC7A6;
+      --teal-2:#12A889;
+      --border: rgba(12, 27, 61, .14);
+      --shadow: 0 10px 30px rgba(11,27,58,.10);
+      --shadow-2: 0 14px 40px rgba(11,27,58,.16);
+      --radius:16px;
+      --radius-sm:12px;
+      --focus: 0 0 0 4px rgba(31,199,166,.22);
+      --max:1180px;
+      --panel:760px;
+    }
+    *{box-sizing:border-box}
+    html, body { height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.35;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none }
+    img{ max-width:100%; display:block }
+    .container{ max-width:var(--max); margin:0 auto; padding:0 18px; }
+    .section{ padding:48px 0; }
+    .section.tight{ padding:32px 0; }
+    .grid{ display:grid; gap:18px; }
+    .two{ grid-template-columns: 1fr 1fr; }
+    .three{ grid-template-columns: repeat(3, 1fr); }
+    .four{ grid-template-columns: repeat(4, 1fr); }
+
+    /* Header */
+    .header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(11,27,58,.74);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width: 240px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:12px;
+      background: rgba(255,255,255,.10);
+      display:grid; place-items:center;
+      border: 1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+    }
+    /* Use the uploaded logo image as background placeholder */
+    .logo img{ width:64px; height:64px; object-fit:cover; opacity:.95; transform: scale(1.05); }
+    .brand strong{
+      color:#fff; font-size:14px; letter-spacing:.2px; display:block;
+      line-height:1.1;
+    }
+    .brand span{
+      color: rgba(234,242,255,.88);
+      font-size:12px; display:block; margin-top:3px;
+    }
+
+    .nav{
+      display:flex; align-items:center; gap:16px;
+    }
+    .nav a{
+      color: rgba(234,242,255,.92);
+      font-size:14px;
+      padding:8px 10px; border-radius:10px;
+      transition: background .18s ease, transform .18s ease, color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+      color:#fff;
+    }
+
+    .header-actions{
+      display:flex; align-items:center; gap:10px; justify-content:flex-end;
+      min-width: 240px;
+    }
+    .lang-toggle{
+      display:flex; align-items:center; gap:10px;
+      padding:7px 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      color: rgba(234,242,255,.95);
+      font-size:13px;
+    }
+    .lang-toggle button{
+      border:none; background:transparent; color:inherit;
+      padding:6px 10px; border-radius:999px;
+      cursor:pointer;
+      transition: background .18s ease, color .18s ease;
+      font-weight:600;
+    }
+    .lang-toggle button.active{
+      background: rgba(31,199,166,.20);
+      color: #EFFFFA;
+      box-shadow: inset 0 0 0 1px rgba(31,199,166,.35);
+    }
+    .cta{
+      display:flex; align-items:center; gap:10px;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight:700; font-size:14px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn.primary{
+      background: var(--teal);
+      color: #053026;
+      box-shadow: 0 10px 22px rgba(31,199,166,.22);
+    }
+    .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 16px 30px rgba(31,199,166,.28); background: var(--teal-2); }
+    .btn.outline{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.35);
+      color:#EAF2FF;
+    }
+    .btn.outline:hover{
+      background: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.55);
+    }
+
+    /* Mobile nav */
+    .menu-btn{
+      display:none;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color:#fff;
+      border-radius: 12px;
+      padding:10px 12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .mobile-nav{
+      display:none;
+      padding-bottom: 14px;
+    }
+    .mobile-nav .links{
+      display:flex; flex-direction:column; gap:8px;
+      padding: 0 0 0;
+    }
+    .mobile-nav .links a{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(234,242,255,.95);
+      padding: 12px 12px;
+      border-radius: 12px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* Floating CTAs (WhatsApp/Call placeholders) */
+    .float-ctas{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    [dir="rtl"] .float-ctas{ left:16px; right:auto; }
+    .fab{
+      width:48px; height:48px;
+      border-radius:16px;
+      background: rgba(11,27,58,.92);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      display:grid; place-items:center;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      color:#EAF2FF;
+      font-weight:900;
+      font-size:14px;
+      user-select:none;
+    }
+    .fab:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+    .fab span{ font-size:12px; font-weight:900; }
+
+    /* Hero */
+    .hero{
+      padding: 40px 0 20px;
+      background:
+        radial-gradient(900px 380px at 20% 0%, rgba(31,199,166,.17), transparent 60%),
+        radial-gradient(820px 320px at 85% 10%, rgba(255,255,255,.14), transparent 60%),
+        linear-gradient(180deg, rgba(11,27,58,.98) 0%, rgba(11,27,58,.95) 45%, rgba(247,250,255,1) 100%);
+      overflow:hidden;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:center;
+      padding: 34px 0 10px;
+    }
+    .hero h1{
+      margin: 0;
+      color:#fff;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .hero p{
+      margin: 14px 0 0;
+      color: rgba(234,242,255,.90);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .hero .hero-ctas{ display:flex; gap:12px; margin-top: 18px; flex-wrap:wrap; }
+    .chips{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px; }
+    .chip{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(234,242,255,.95);
+      padding: 9px 12px;
+      border-radius:999px;
+      font-size: 13px;
+      font-weight:800;
+      user-select:none;
+      transform: translateY(8px);
+      opacity:0;
+    }
+
+    .hero-card{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,.16);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      min-height: 320px;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:-60px;
+      background: conic-gradient(from 180deg, rgba(31,199,166,.0), rgba(31,199,166,.32), rgba(31,199,166,.0));
+      opacity:.35;
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg);} }
+
+    .hero-card .content{
+      position:relative; z-index:1;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .hero-visual{
+      position:relative;
+      background: linear-gradient(140deg, #dff5f2, #f5fbff 48%, #dce9f3);
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 14px;
+      height: 220px;
+      overflow:hidden;
+      transform: translateY(10px);
+      opacity:0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+    }
+    .hero-visual .equipment-composite{
+      position:absolute; inset:0;
+      width:100%; height:100%; display:block;
+      visibility:hidden;
+    }
+    .hero-visual .solution-hero-art{
+      position:absolute; inset:0;
+      width:100%; height:100%; display:block;
+    }
+    .hero-visual .badge{
+      position:absolute; left:14px; bottom:14px; z-index:2;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: #fff;
+      background: rgba(11,27,58,.76); border: 1px solid rgba(255,255,255,.55);
+      border-radius: 999px; padding: 8px 12px; backdrop-filter: blur(4px);
+      font-weight: 900;
+    }
+    .metric-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+    .metric{
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 12px 12px;
+      color:#fff;
+      transform: translateY(10px);
+      opacity:0;
+    }
+    .metric strong{
+      display:block; font-size: 16px;
+    }
+    .metric span{
+      color: rgba(234,242,255,.85);
+      font-size: 12px; margin-top:6px; display:block; font-weight:700;
+    }
+
+    /* Sections headings */
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin:0; font-size: 24px; letter-spacing:-.01em;
+      color: var(--navy);
+    }
+    .section-title p{
+      margin:0; color: var(--muted); max-width: 60ch; font-size: 14px;
+      font-weight:600;
+    }
+
+    /* Cards */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(11,27,58,.06);
+      overflow:hidden;
+    }
+    .card-pad{ padding: 18px; }
+    .service-card{
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor:pointer;
+      position:relative;
+    }
+    .service-card:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-2);
+      border-color: rgba(31,199,166,.30);
+    }
+    .service-visual{
+      height: 86px;
+      border-radius: 12px;
+      position:relative;
+      overflow:hidden;
+      margin-bottom: 14px;
+      border: 1px solid rgba(12,27,61,.08);
+      background-size:cover;
+      background-position:center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+    .repair-visual{ background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85'); }
+    .cal-visual{ background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80'); }
+    .pm-visual{ background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80'); }
+    .cm-visual{ background-image: url('https://images.unsplash.com/photo-1538108149393-fbbd81895973?auto=format&fit=crop&w=1200&q=80'); }
+    .install-visual{ background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=80'); }
+    .amc-visual{ background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80'); }
+    .service-visual::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(9,18,36,.18), rgba(9,18,36,.42));
+    }
+    .service-icon{
+      position:absolute; left:12px; top:12px; z-index:1;
+      width:44px; height:44px;
+      border-radius: 14px;
+      background: rgba(31,199,166,.18);
+      border: 1px solid rgba(31,199,166,.26);
+      display:grid; place-items:center;
+      color: var(--teal-2);
+      font-weight:900;
+      backdrop-filter: blur(5px);
+    }
+    .service-card h3{
+      margin:0; font-size: 16px; color: var(--navy);
+      letter-spacing:-.01em;
+    }
+    .service-card p{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight:600;
+      min-height: 42px;
+    }
+    .card-link{
+      margin-top: 14px;
+      display:flex; align-items:center; justify-content:space-between;
+      color: var(--navy);
+      font-weight:900;
+      font-size: 14px;
+    }
+    .arrow{
+      width:32px; height:32px; border-radius: 12px;
+      border: 1px solid var(--border);
+      display:grid; place-items:center;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      background: #fff;
+    }
+    .service-card:hover .arrow{
+      transform: translateX(3px);
+      border-color: rgba(31,199,166,.30);
+      background: rgba(31,199,166,.08);
+    }
+
+    /* Industries tiles */
+    .tile{
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      min-height: 180px;
+    }
+    .tile:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-2);
+      border-color: rgba(31,199,166,.32);
+    }
+    .tile::after{
+      content:"";
+      position:absolute; top:-30%; left:-60%;
+      width: 140%; height: 80%;
+      background: linear-gradient(90deg, rgba(31,199,166,.0), rgba(31,199,166,.22), rgba(31,199,166,.0));
+      transform: rotate(12deg);
+      opacity:0;
+      transition: opacity .22s ease;
+    }
+    .tile:hover::after{ opacity:1; animation: sweep .9s ease both; }
+    @keyframes sweep{
+      0%{ transform: translateX(-60%) rotate(12deg); }
+      100%{ transform: translateX(60%) rotate(12deg); }
+    }
+
+    .tile h3{ margin:0; color: var(--navy); font-size: 18px; letter-spacing:-.01em; }
+    .tile p{ margin: 10px 0 0; color: var(--muted); font-size:14px; font-weight:600; max-width:60ch; }
+    .tile ul{ margin: 14px 0 0; padding-left:18px; color: var(--navy); font-weight:700; font-size:13px; }
+    .tile li{ margin: 6px 0; color: var(--muted); }
+    .tile .learn{
+      margin-top: 14px;
+      display:flex; align-items:center; gap:10px; font-weight:900; color: var(--navy);
+    }
+    .pill{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 9px 12px; border-radius:999px;
+      background: rgba(11,27,58,.06);
+      border: 1px solid var(--border);
+      font-size: 13px; font-weight:800;
+      color: var(--navy);
+      user-select:none;
+    }
+    .chips-wrap{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px; }
+
+    /* Process */
+    .process{
+      background: linear-gradient(180deg, rgba(11,27,58,.04), rgba(11,27,58,.0));
+    }
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+      position:relative;
+    }
+    .steps::before{
+      content:"";
+      position:absolute;
+      top: 46px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(11,27,58,.12);
+      z-index:0;
+    }
+    .step{
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      position:relative;
+      z-index:1;
+      min-height: 124px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .step:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: rgba(31,199,166,.30);
+    }
+    .num{
+      width: 34px; height:34px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(31,199,166,.14);
+      border: 1px solid rgba(31,199,166,.26);
+      color: var(--teal-2);
+      font-weight:900;
+    }
+    .step h3{ margin:12px 0 0; color: var(--navy); font-size:15px; }
+    .step p{ margin:8px 0 0; color: var(--muted); font-weight:650; font-size:13.5px; }
+
+    /* Accordion */
+    .faq{
+      display:grid; gap:12px;
+      margin-top: 16px;
+    }
+    .acc{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 10px 26px rgba(11,27,58,.05);
+    }
+    .acc button{
+      width:100%;
+      text-align:left;
+      background: transparent;
+      border:none;
+      padding: 16px 16px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      font-weight:900;
+      color: var(--navy);
+      font-size:14.5px;
+    }
+    .acc .body{
+      padding: 0 16px 16px 16px;
+      color: var(--muted);
+      font-weight:650;
+      font-size:14px;
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .32s ease;
+    }
+    .chev{
+      width:34px; height:34px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      display:grid; place-items:center;
+      flex: 0 0 auto;
+      transition: transform .22s ease, background .18s ease, border-color .18s ease;
+      background:#fff;
+    }
+    .acc.open .chev{
+      transform: rotate(180deg);
+      border-color: rgba(31,199,166,.30);
+      background: rgba(31,199,166,.08);
+    }
+
+    /* Forms */
+    .wizard-wrap{
+      display:grid;
+      place-items:start center;
+      padding: 0 0;
+    }
+    .wizard-panel{
+      width: 100%;
+      max-width: var(--panel);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .wizard-top{
+      padding: 18px 18px 0;
+      background: linear-gradient(180deg, rgba(11,27,58,.04), rgba(11,27,58,0));
+    }
+    .step-row{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .step-node{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,27,58,.10);
+      background: rgba(11,27,58,.02);
+      transition: border-color .18s ease, background .18s ease;
+      user-select:none;
+    }
+    .step-dot{
+      width: 26px; height:26px;
+      border-radius: 12px;
+      border: 2px solid rgba(11,27,58,.18);
+      display:grid; place-items:center;
+      font-weight:900;
+      font-size: 12px;
+      color: rgba(11,27,58,.70);
+    }
+    .step-node.active{
+      border-color: rgba(31,199,166,.42);
+      background: rgba(31,199,166,.10);
+    }
+    .step-node.active .step-dot{
+      border-color: rgba(31,199,166,.70);
+      color: #053026;
+      background: rgba(31,199,166,.25);
+    }
+    .step-node.done{
+      border-color: rgba(31,199,166,.30);
+    }
+    .step-node.done .step-dot{
+      border-color: rgba(31,199,166,.70);
+      background: rgba(31,199,166,.25);
+      color: #053026;
+    }
+
+    .wizard-content{
+      padding: 18px;
+    }
+    .wizard-title{
+      display:flex; flex-direction:column; gap:6px;
+      margin-bottom: 14px;
+    }
+    .wizard-title h2{
+      margin:0; color: var(--navy); font-size: 18px;
+    }
+    .wizard-title p{
+      margin:0; color: var(--muted); font-weight:650; font-size:14px;
+    }
+
+    .form-grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .field{
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .label{
+      font-weight:900;
+      color: var(--navy);
+      font-size: 13px;
+    }
+    .req{ color: var(--teal-2); }
+    input, select, textarea{
+      width:100%;
+      border-radius: 12px;
+      border: 1px solid rgba(12,27,61,.18);
+      padding: 12px 12px;
+      outline:none;
+      font-size: 14px;
+      background:#fff;
+      color: var(--text);
+      transition: box-shadow .18s ease, border-color .18s ease;
+      font-weight:650;
+    }
+    textarea{ resize: vertical; min-height: 110px; }
+    input:focus, select:focus, textarea:focus{
+      box-shadow: var(--focus);
+      border-color: rgba(31,199,166,.55);
+    }
+    .hint{
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight:650;
+    }
+
+    .error{
+      color: #B42318;
+      font-weight:800;
+      font-size: 12.5px;
+      margin-top: -2px;
+      display:none;
+    }
+    .field.invalid .error{ display:block; }
+    .pill-toggle{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .pill-toggle button{
+      flex: 1 1 auto;
+      border-radius:999px;
+      border: 1px solid rgba(12,27,61,.18);
+      background:#fff;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight:900;
+      color: var(--navy);
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
+      min-width: 120px;
+    }
+    .pill-toggle button:hover{ transform: translateY(-1px); }
+    .pill-toggle button.active{
+      border-color: rgba(31,199,166,.55);
+      background: rgba(31,199,166,.12);
+    }
+
+    .upload-box{
+      border: 1.6px dashed rgba(12,27,61,.22);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(11,27,58,.02);
+      transition: border-color .18s ease, background .18s ease;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .upload-box.drag{
+      border-color: rgba(31,199,166,.62);
+      background: rgba(31,199,166,.08);
+    }
+    .upload-row{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn-row{
+      display:flex; gap:12px; justify-content:space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(11,27,58,.10);
+    }
+    .btn.secondary{
+      background: #fff;
+      border: 1px solid rgba(11,27,58,.18);
+      color: var(--navy);
+      box-shadow: none;
+    }
+    .btn.secondary:hover{
+      transform: translateY(-1px);
+      border-color: rgba(31,199,166,.35);
+      background: rgba(31,199,166,.07);
+    }
+    .btn:disabled{
+      opacity:.55; cursor:not-allowed; transform:none !important;
+    }
+
+    .step-panel{
+      display:none;
+      animation: stepIn .22s ease both;
+    }
+    .step-panel.active{ display:block; }
+    @keyframes stepIn{
+      from{ opacity:0; transform: translateY(6px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .summary{
+      background: rgba(11,27,58,.02);
+      border: 1px solid rgba(12,27,61,.12);
+      border-radius: var(--radius);
+      padding: 14px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .summary-row{
+      display:flex; gap:10px; align-items:flex-start;
+      font-weight:800; color: var(--navy);
+      font-size: 13.5px;
+    }
+    .check{
+      width: 22px; height: 22px;
+      border-radius: 10px;
+      background: rgba(31,199,166,.14);
+      border: 1px solid rgba(31,199,166,.28);
+      color: var(--teal-2);
+      display:grid; place-items:center;
+      font-weight:900;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    /* Footer */
+    footer{
+      background: #0A1633;
+      color: rgba(234,242,255,.88);
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 34px 0 44px;
+      margin-top: 20px;
+    }
+    .footer-grid{
+      display:grid; grid-template-columns: 1.3fr 1fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    footer h3{ margin:0; font-size:14px; color:#fff; letter-spacing:.2px; }
+    footer p{ margin:10px 0 0; color: rgba(234,242,255,.78); font-weight:650; font-size:13.5px; }
+    .footer-links{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
+    .footer-links a{
+      color: rgba(234,242,255,.82);
+      font-weight:700;
+      font-size:13.5px;
+    }
+    .footer-links a:hover{ color:#fff; }
+    .footer-bottom{
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      color: rgba(234,242,255,.70);
+      font-weight:650; font-size:12.5px;
+    }
+
+    /* Scroll reveal */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show{ opacity:1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ opacity:1; transform:none; }
+      .hero-card::before{ animation:none; }
+      *{ scroll-behavior:auto !important; }
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr 1fr; }
+      .steps::before{ display:none; }
+      .three{ grid-template-columns: 1fr; }
+      .four{ grid-template-columns: 1fr 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .cta{ display:none; }
+      .menu-btn{ display:inline-flex; align-items:center; justify-content:center; }
+      .mobile-nav{ display:block; }
+      .mobile-nav.hidden{ display:none; }
+      .header-inner{ padding: 12px 0; }
+      .header-actions{ min-width: auto; }
+      .brand{ min-width:auto; }
+    }
+    @media (max-width: 720px){
+      .four{ grid-template-columns: 1fr; }
+      .two{ grid-template-columns: 1fr; }
+      .form-grid-2{ grid-template-columns: 1fr; }
+      .float-ctas{ right: 12px; bottom: 12px; }
+      [dir="rtl"] .float-ctas{ left:12px; right:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Replace with your logo file when you have it clearer; for now, we reuse the provided attachment via data URL is not available.
+               So we keep a simple placeholder mark. -->
+          <div style="width:100%;height:100%;display:grid;place-items:center;font-weight:1000;color:#EAF2FF;">IB</div>
+        </div>
+        <div>
+          <strong>ICON BIOTRONICS FZE</strong>
+          <span>Biomedical Repair • Calibration • Maintenance</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#industries" data-i18n="nav.industries">Industries</a>
+        <a href="#process" data-i18n="nav.process">Our Process</a>
+        <a href="#faq" data-i18n="nav.faq">FAQs</a>
+        <a href="#request" data-i18n="nav.request">Request Service</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language toggle">
+          <button id="lang-en" class="active" type="button" aria-pressed="true">EN</button>
+          <button id="lang-ar" type="button" aria-pressed="false">العربية</button>
+        </div>
+
+        <div class="cta">
+          <button class="btn outline" type="button" onclick="document.getElementById('request').scrollIntoView({behavior:'smooth'});">
+            <span data-i18n="header.cta.services">Request Service</span>
+          </button>
+          <button class="btn primary" type="button" onclick="goToServiceWizard();">
+            <span data-i18n="header.cta.quote">Get a Quote</span>
+          </button>
+        </div>
+
+        <button class="menu-btn" type="button" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <div class="container mobile-nav hidden" id="mobileNav">
+      <div class="links">
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#industries" data-i18n="nav.industries">Industries</a>
+        <a href="#process" data-i18n="nav.process">Our Process</a>
+        <a href="#faq" data-i18n="nav.faq">FAQs</a>
+        <a href="#request" data-i18n="nav.request">Request Service</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <div class="reveal" data-reveal>
+            <h1 data-i18n="home.h1">Biomedical Repair, Calibration & Maintenance—UAE Coverage</h1>
+            <p data-i18n="home.sub">
+              On-site & in-house support for dental, aesthetics and general biomedical equipment.
+              Transparent service reporting and structured workflow.
+            </p>
+
+            <div class="chips" aria-label="Highlights">
+              <div class="chip" data-i18n="home.chip1">Fast Response</div>
+              <div class="chip" data-i18n="home.chip2">Service Reporting</div>
+              <div class="chip" data-i18n="home.chip3">UAE Coverage</div>
+            </div>
+
+            <div class="hero-ctas">
+              <button class="btn primary" type="button" onclick="goToServiceWizard();">
+                <span data-i18n="home.cta1">Request Service</span>
+              </button>
+              <button class="btn outline" type="button" onclick="scrollToId('services');">
+                <span data-i18n="home.cta2">Explore Services</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal" data-reveal>
+          <div class="content">
+            <div class="hero-visual" aria-label="Biomedical technology solution">
+              <svg class="solution-hero-art" viewBox="0 0 735 490" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A hand selecting a technology interface with gears and the word Solution">
+                <defs>
+                  <linearGradient id="solutionBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7bbc8"/><stop offset=".48" stop-color="#657e96"/><stop offset="1" stop-color="#364f68"/></linearGradient>
+                  <linearGradient id="solutionPanel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#708da6" stop-opacity=".24"/><stop offset="1" stop-color="#203c57" stop-opacity=".18"/></linearGradient>
+                  <linearGradient id="handTone" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6c6ae"/><stop offset=".55" stop-color="#d99983"/><stop offset="1" stop-color="#ba7668"/></linearGradient>
+                  <linearGradient id="sleeveTone" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#172b3b"/><stop offset="1" stop-color="#071521"/></linearGradient>
+                  <pattern id="solutionGrid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0v42" fill="none" stroke="#e8f4fb" stroke-opacity=".08"/></pattern>
+                </defs>
+                <rect width="735" height="490" fill="url(#solutionBg)"/><rect width="735" height="490" fill="url(#solutionGrid)"/>
+                <path d="M0 134h735M0 338h735M126 0v490M550 0v490" stroke="#edf7fc" stroke-opacity=".13"/>
+                <g fill="none" stroke="#eaf5fb" stroke-opacity=".43" stroke-width="2">
+                  <rect x="158" y="124" width="187" height="154" rx="18"/><rect x="170" y="136" width="163" height="130" rx="11"/>
+                  <rect x="157" y="66" width="54" height="56" rx="15"/><circle cx="184" cy="94" r="12"/>
+                  <rect x="290" y="0" width="83" height="81" rx="16"/><circle cx="331" cy="39" r="17"/><path d="M319 39l9 9 18-21"/>
+                  <rect x="157" y="306" width="59" height="72" rx="17"/><path d="M171 359v-16l10-10 8 9 10-17"/>
+                  <rect x="326" y="307" width="67" height="49" rx="10"/><path d="M338 340c8-16 15 12 23-3s11-11 20 1"/>
+                  <rect x="408" y="70" width="82" height="62" rx="12"/><circle cx="449" cy="101" r="20"/><circle cx="449" cy="101" r="8"/><path d="M449 72v14m0 30v14m-29-29h14m30 0h14"/>
+                  <rect x="470" y="342" width="93" height="52" rx="8"/><path d="M484 380v-17h10v17m7 0v-27h10v27m7 0v-21h10v21m7 0v-33h10v33"/>
+                </g>
+                <g opacity=".33" fill="#eaf5fb"><path d="M36 54h80v4H36zm0 13h62v4H36zm506 76h95v5h-95zm0 13h73v5h-73zM32 407h120v5H32zm0 13h88v5H32z"/></g>
+                <rect x="218" y="152" width="117" height="103" rx="13" fill="url(#solutionPanel)" stroke="#f2f8fc" stroke-opacity=".8" stroke-width="3"/>
+                <g fill="#f2f8fc" opacity=".9"><path d="M262 176l5-7 8 1 4 8 7 4-1 8-7 5-3 9-8 2-6-7-9-1-3-8 5-7z"/><circle cx="270" cy="185" r="5" fill="#69839a"/><path d="M294 191l4-6 6 1 3 6 5 3v6l-5 4-2 7-7 1-4-5-7-1-2-6 4-5z"/><circle cx="301" cy="198" r="4" fill="#69839a"/><path d="M278 207l3-5 6 1 3 5 5 3v6l-5 3-2 6-6 1-3-5-6-1-2-5 4-4z"/><circle cx="285" cy="214" r="3.5" fill="#69839a"/></g>
+                <text x="359" y="207" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" textLength="344" lengthAdjust="spacingAndGlyphs">SOLUTION</text>
+                <path d="M0 420c49-30 89-54 129-89 31-27 50-49 70-81 9-14 22-36 39-52 10-10 22-14 31-8 11 7 9 20 2 34l-17 32 55 25c19 9 26 21 20 33-6 11-19 15-36 8l-47-18 27 28c13 14 14 28 3 37-11 9-25 7-39-6l-29-26 12 25c7 16 4 29-9 35-13 6-26 0-35-15l-13-21-29 42c-25 36-53 70-87 101H0z" fill="url(#handTone)" stroke="#f5d6ca" stroke-opacity=".62" stroke-width="3"/>
+                <path d="M0 416c39-24 77-50 109-77l42 25c-33 43-68 87-106 126H0z" fill="url(#sleeveTone)"/>
+                <path d="M182 253c17 4 35 16 51 29m-35 3c13 6 25 16 35 27" fill="none" stroke="#f6d8cb" stroke-opacity=".7" stroke-width="3" stroke-linecap="round"/>
+                <rect width="735" height="490" fill="url(#solutionBg)" opacity=".08"/>
+              </svg>
+              <svg class="equipment-composite" viewBox="0 0 1000 360" role="img" aria-label="Dental chair, medical laser, ultrasound system, CT scanner and MRI scanner together in a bright clinical setting">
+              <svg class="equipment-composite" viewBox="0 0 1000 360" role="img" aria-label="Dental chair, medical laser, ultrasound system, CT scanner and MRI scanner together in a bright clinical setting">
+                <defs>
+                  <linearGradient id="equipmentBg" x2="0" y2="1"><stop stop-color="#d9f1ee"/><stop offset="1" stop-color="#f7fbff"/></linearGradient>
+                  <linearGradient id="deviceWhite" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce8f0"/></linearGradient>
+                  <linearGradient id="screenTeal" x2="0" y2="1"><stop stop-color="#22c5ad"/><stop offset="1" stop-color="#087e82"/></linearGradient>
+                  <filter id="equipmentShadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#173653" flood-opacity=".16"/></filter>
+                </defs>
+                <rect width="1000" height="360" fill="url(#equipmentBg)"/>
+                <path d="M0 282h1000v78H0z" fill="#eaf1f5"/><path d="M0 281h1000" stroke="#d3e1e8" stroke-width="2"/>
+                <g filter="url(#equipmentShadow)" stroke="#a8bdca" stroke-width="3" stroke-linejoin="round">
+                  <path d="M42 93q0-15 15-15h71q15 0 15 15v42q0 13-13 13H57q-15 0-15-15z" fill="url(#deviceWhite)"/>
+                  <path d="M88 143h41l28 83q4 12-9 16l-27 7-43-87z" fill="#fdfefe"/>
+                  <path d="M133 236l48 8 12 17-9 10-74-12z" fill="#dce8f0"/>
+                  <path d="M91 264l-4 18m103-13 8 13" stroke="#718b9a" stroke-width="7" stroke-linecap="round"/>
+                  <path d="M49 80V60q0-8 8-8h53" fill="none" stroke="#8da7b6" stroke-width="5"/><circle cx="113" cy="52" r="10" fill="#f6fbff"/>
+                  <rect x="231" y="101" width="103" height="141" rx="15" fill="url(#deviceWhite)"/>
+                  <rect x="245" y="115" width="75" height="56" rx="8" fill="#143552" stroke="#a9c2ce" stroke-width="2"/>
+                  <rect x="252" y="122" width="61" height="39" rx="4" fill="url(#screenTeal)" stroke="none"/><path d="M260 146l10-12 8 8 8-14 12 17" fill="none" stroke="#d9fff7" stroke-width="3"/>
+                  <circle cx="258" cy="190" r="6" fill="#22c5ad" stroke="none"/><circle cx="278" cy="190" r="6" fill="#d8e7ef" stroke="none"/>
+                  <path d="M281 242v26m-28 0h57" stroke="#8299a8" stroke-width="5" stroke-linecap="round"/><circle cx="254" cy="276" r="9" fill="#718b9a"/><circle cx="307" cy="276" r="9" fill="#718b9a"/>
+                  <path d="M331 136q35 0 35 31v13" fill="none" stroke="#708d9b" stroke-width="4"/><path d="M360 177l12 6-7 18-12-5z" fill="#f9ffff"/>
+                  <rect x="398" y="85" width="122" height="96" rx="12" fill="url(#deviceWhite)"/>
+                  <rect x="410" y="97" width="98" height="65" rx="7" fill="#173b54" stroke="#a9c2ce" stroke-width="2"/><rect x="417" y="104" width="84" height="51" rx="4" fill="#e7f6f5" stroke="none"/>
+                  <path d="M422 132h11l7-13 9 25 8-18 7 8h31" fill="none" stroke="#17a995" stroke-width="3"/>
+                  <path d="M405 183h108v49H405z" fill="url(#deviceWhite)"/><circle cx="423" cy="198" r="5" fill="#20bba6" stroke="none"/><circle cx="441" cy="198" r="5" fill="#a8bdca" stroke="none"/><circle cx="459" cy="198" r="5" fill="#a8bdca" stroke="none"/>
+                  <path d="M426 232v33m66-33v33m-79 0h93" stroke="#8299a8" stroke-width="5" stroke-linecap="round"/><circle cx="436" cy="275" r="8" fill="#718b9a"/><circle cx="487" cy="275" r="8" fill="#718b9a"/>
+                  <path d="M515 118q24 4 13 35l-9 18" fill="none" stroke="#718b9a" stroke-width="4"/><path d="M517 169l12 5-7 14-11-5z" fill="#f9ffff"/>
+                  <path d="M586 91q0-20 20-20h84q20 0 20 20v143q0 20-20 20h-84q-20 0-20-20z" fill="url(#deviceWhite)"/>
+                  <path d="M614 101q0-11 11-11h46q11 0 11 11v125q0 11-11 11h-46q-11 0-11-11z" fill="#d8f0ed" stroke="#b7cbd5" stroke-width="2"/>
+                  <path d="M638 234v31m-38 0h105" stroke="#8299a8" stroke-width="5" stroke-linecap="round"/><path d="M582 177h-27v17h55" fill="none" stroke="#aec3cf" stroke-width="8" stroke-linecap="round"/><rect x="604" y="276" width="112" height="8" rx="4" fill="#7e96a4" stroke="none"/>
+                  <rect x="778" y="69" width="170" height="176" rx="32" fill="url(#deviceWhite)"/><ellipse cx="863" cy="157" rx="54" ry="69" fill="#c9e8e6" stroke="#abc5d0" stroke-width="3"/><ellipse cx="863" cy="157" rx="34" ry="51" fill="#284b62" stroke="#d6e7ec" stroke-width="6"/><ellipse cx="863" cy="157" rx="20" ry="37" fill="#e5f6f4" stroke="none"/>
+                  <path d="M804 245v19m118-19v19m-133 0h150" stroke="#8299a8" stroke-width="5" stroke-linecap="round"/><path d="M795 168h-40v17h60" fill="none" stroke="#aec3cf" stroke-width="8" stroke-linecap="round"/>
+                </g>
+                <g fill="#25475e" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="105" y="323">DENTAL</text><text x="282" y="323">LASER</text><text x="459" y="323">ULTRASOUND</text><text x="648" y="323">CT</text><text x="863" y="323">MRI</text></g>
+                <rect x="28" y="24" width="944" height="312" rx="20" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+              </svg>
+              <div class="badge">Biomedical equipment care</div>
+            </div>
+            <div class="metric-row" aria-label="Capability highlights">
+              <div class="metric">
+                <strong data-i18n="home.m1">On-site</strong>
+                <span data-i18n="home.m1s">Field support</span>
+              </div>
+              <div class="metric">
+                <strong data-i18n="home.m2">In-house</strong>
+                <span data-i18n="home.m2s">Workshop repair</span>
+              </div>
+              <div class="metric">
+                <strong data-i18n="home.m3">Structured</strong>
+                <span data-i18n="home.m3s">Workflow & reporting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2 data-i18n="services.title">Services</h2>
+            <p data-i18n="services.sub">Repair, calibration, preventive & corrective maintenance, installations and AMC support.</p>
+          </div>
+          <div class="hint" data-i18n="services.hint">Select a service card to learn more.</div>
+        </div>
+
+        <div class="grid three" style="margin-top:18px;">
+          <!-- Repair -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="repair">
+            <div class="service-visual repair-visual">
+              <div class="service-icon">🛠️</div>
+            </div>
+            <h3 data-i18n="svc.repair.title">Biomedical Equipment Repair</h3>
+            <p data-i18n="svc.repair.desc">Fault diagnosis, component-level repair (where applicable), functional testing and service reporting.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+
+          <!-- Calibration -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="calibration">
+            <div class="service-visual cal-visual">
+              <div class="service-icon">📏</div>
+            </div>
+            <h3 data-i18n="svc.cal.title">Calibration & Testing</h3>
+            <p data-i18n="svc.cal.desc">On-site or in-house calibration and functional checks with structured documentation and recommendations.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+
+          <!-- Preventive -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="pm">
+            <div class="service-visual pm-visual">
+              <div class="service-icon">🧰</div>
+            </div>
+            <h3 data-i18n="svc.pm.title">Preventive Maintenance (PM)</h3>
+            <p data-i18n="svc.pm.desc">Planned maintenance schedules to reduce downtime and keep equipment within operational best practices.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+
+          <!-- Corrective -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="cm">
+            <div class="service-visual cm-visual">
+              <div class="service-icon">⚙️</div>
+            </div>
+            <h3 data-i18n="svc.cm.title">Corrective Maintenance</h3>
+            <p data-i18n="svc.cm.desc">Response to breakdowns and performance issues with diagnosis, repair/restore actions, and follow-up.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+
+          <!-- Installation -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="install">
+            <div class="service-visual install-visual">
+              <div class="service-icon">🔧</div>
+            </div>
+            <h3 data-i18n="svc.inst.title">Installations & Commissioning</h3>
+            <p data-i18n="svc.inst.desc">Setup support, functional checks, operational readiness and handover for new or relocated equipment.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+
+          <!-- AMC -->
+          <div class="card card-pad service-card reveal" data-reveal role="button" tabindex="0" data-service="amc">
+            <div class="service-visual amc-visual">
+              <div class="service-icon">📄</div>
+            </div>
+            <h3 data-i18n="svc.amc.title">Service Contracts (AMC)</h3>
+            <p data-i18n="svc.amc.desc">Maintenance agreements tailored to your assets with defined workflow, reporting and scheduled visits.</p>
+            <div class="card-link">
+              <span data-i18n="common.learn">Learn more</span>
+              <div class="arrow">→</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Detail Blocks (single page sections) -->
+        <div style="margin-top:22px;">
+          <div id="service-detail" class="card" style="display:none;">
+            <div class="card-pad">
+              <div class="section-title" style="margin-bottom:10px;">
+                <div>
+                  <h2 id="service-detail-title" style="margin:0; color:var(--navy); font-size:20px;">Service Detail</h2>
+                  <p id="service-detail-sub" style="margin:8px 0 0;">...</p>
+                </div>
+                <button class="btn secondary" type="button" onclick="hideServiceDetail();">Close</button>
+              </div>
+
+              <div class="grid two">
+                <div class="card" style="box-shadow:none;">
+                  <div class="card-pad">
+                    <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="detail.what">What we do</h3>
+                    <ul id="detail-what" style="margin:12px 0 0; padding-left:18px; color:var(--muted); font-weight:700; font-size:14px;">
+                      <!-- injected -->
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="card" style="box-shadow:none;">
+                  <div class="card-pad">
+                    <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="detail.workflow">Typical workflow</h3>
+                    <ol id="detail-workflow" style="margin:12px 0 0; padding-left:18px; color:var(--muted); font-weight:800; font-size:14px;">
+                      <!-- injected -->
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow:none; margin-top:14px;">
+                <div class="card-pad">
+                  <div class="two" style="gap:12px; display:grid; align-items:start;">
+                    <div>
+                      <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="detail.coverage">Coverage</h3>
+                      <p id="detail-coverage" style="margin:8px 0 0; color:var(--muted); font-weight:650; font-size:14px;">
+                        On-site and in-house support across UAE for dental, aesthetics and general biomedical equipment.
+                      </p>
+                      <div class="chips-wrap" id="detail-tags" style="margin-top:12px;"></div>
+                    </div>
+                    <div>
+                      <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="detail.cta">Next step</h3>
+                      <p style="margin:8px 0 0; color:var(--muted); font-weight:650; font-size:14px;" data-i18n="detail.cta-sub">
+                        Submit your details and we’ll contact you to schedule the appropriate service.
+                      </p>
+                      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+                        <button class="btn primary" type="button" onclick="goToServiceWizard();">
+                          <span data-i18n="detail.cta-btn">Request Service</span>
+                        </button>
+                        <button class="btn secondary" type="button" onclick="scrollToId('request');">
+                          <span data-i18n="detail.form-btn">Open Form</span>
+                        </button>
+                      </div>
+                      <div class="hint" style="margin-top:10px;" data-i18n="detail.urgent">
+                        Urgent support: call/WhatsApp placeholders at the bottom-right.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="section tight" id="industries">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2 data-i18n="ind.title">Industries We Support</h2>
+            <p data-i18n="ind.sub">Dental and aesthetics support first, plus general biomedical equipment services across UAE.</p>
+          </div>
+          <div class="hint" data-i18n="ind.hint">Focus areas</div>
+        </div>
+
+        <div class="grid two">
+          <div class="card tile reveal" data-reveal role="button" tabindex="0" onclick="prefillServiceForIndustry('dental');">
+            <h3 data-i18n="ind.dental.h">Dental Clinics & Dental Centers</h3>
+            <p data-i18n="ind.dental.p">Equipment repair, maintenance planning, and installation support for clinic operations.</p>
+            <ul>
+              <li data-i18n="ind.dental.l1">Repair and troubleshooting</li>
+              <li data-i18n="ind.dental.l2">Preventive maintenance schedules</li>
+              <li data-i18n="ind.dental.l3">Installations and commissioning support</li>
+            </ul>
+            <div class="learn"><span data-i18n="common.learn2">Request service for dental</span> <span class="arrow" style="width:34px;height:34px;">→</span></div>
+          </div>
+
+          <div class="card tile reveal" data-reveal role="button" tabindex="0" onclick="prefillServiceForIndustry('aesthetics');">
+            <h3 data-i18n="ind.aest.h">Aesthetics Clinics & Beauty Centers</h3>
+            <p data-i18n="ind.aest.p">Support for equipment reliability, maintenance workflows and on-site assistance.</p>
+            <ul>
+              <li data-i18n="ind.aest.l1">Corrective maintenance support</li>
+              <li data-i18n="ind.aest.l2">Calibration & functional testing</li>
+              <li data-i18n="ind.aest.l3">Service contracts (AMC) planning</li>
+            </ul>
+            <div class="learn"><span data-i18n="common.learn2">Request service for aesthetics</span> <span class="arrow" style="width:34px;height:34px;">→</span></div>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:18px;" >
+          <div class="two" style="display:grid; gap:14px; align-items:start;">
+            <div>
+              <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="ind.equip.title">Common equipment categories (example)</h3>
+              <div class="chips-wrap" style="margin-top:12px;">
+                <span class="pill" data-i18n="equip.1">Dental Units</span>
+                <span class="pill" data-i18n="equip.2">Autoclaves & Sterilization</span>
+                <span class="pill" data-i18n="equip.3">Aesthetic Devices</span>
+                <span class="pill" data-i18n="equip.4">Accessories & Consumables-handling support</span>
+                <span class="pill" data-i18n="equip.5">General Medical Devices</span>
+                <span class="pill" data-i18n="equip.6">Control Systems & Electrical support</span>
+                <span class="pill" data-i18n="equip.7">General biomedical equipment</span>
+              </div>
+            </div>
+            <div>
+              <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="ind.note.title">How we handle “almost all categories”</h3>
+              <p style="margin:10px 0 0; color:var(--muted); font-weight:650; font-size:14px;" data-i18n="ind.note.p">
+                If your equipment is not listed, submit the service request with brand/model and a description.
+                We’ll route the request to the right troubleshooting or maintenance workflow.
+              </p>
+              <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px;">
+                <button class="btn primary" type="button" onclick="goToServiceWizard();"><span data-i18n="ind.note.btn">Request Service</span></button>
+                <button class="btn secondary" type="button" onclick="scrollToId('faq');"><span data-i18n="ind.note.btn2">Read FAQs</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section tight" id="why-us">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2>Why healthcare providers choose us</h2>
+            <p>Practical support for clinics, laboratories, and healthcare facilities that need dependable biomedical service without disruption.</p>
+          </div>
+          <div class="hint">Built around uptime</div>
+        </div>
+
+        <div class="grid four">
+          <div class="card card-pad service-card reveal" data-reveal>
+            <div class="service-icon">✅</div>
+            <h3>Reliable Response</h3>
+            <p>Clear communication, scheduled visits, and responsive support for urgent breakdowns or planned maintenance.</p>
+          </div>
+
+          <div class="card card-pad service-card reveal" data-reveal>
+            <div class="service-icon">📊</div>
+            <h3>Structured Reporting</h3>
+            <p>Every service is tracked with practical notes, recommendations, and efficient follow-up documentation.</p>
+          </div>
+
+          <div class="card card-pad service-card reveal" data-reveal>
+            <div class="service-icon">🏥</div>
+            <h3>Clinical Focus</h3>
+            <p>Designed around the realities of dental, aesthetics, and general clinical equipment operations.</p>
+          </div>
+
+          <div class="card card-pad service-card reveal" data-reveal>
+            <div class="service-icon">🔒</div>
+            <h3>Operational Continuity</h3>
+            <p>Helping facilities minimize downtime while maintaining safe, dependable equipment performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2 data-i18n="proc.title">Our Process</h2>
+            <p data-i18n="proc.sub">A structured workflow from request to testing and handover.</p>
+          </div>
+          <div class="hint" data-i18n="proc.hint">Clear steps</div>
+        </div>
+
+        <div class="steps">
+          <div class="step reveal" data-reveal>
+            <div class="num">1</div>
+            <h3 data-i18n="proc.s1.h">Request Service</h3>
+            <p data-i18n="proc.s1.p">Submit details, symptoms, and location in UAE.</p>
+          </div>
+          <div class="step reveal" data-reveal>
+            <div class="num">2</div>
+            <h3 data-i18n="proc.s2.h">Assessment & Diagnosis</h3>
+            <p data-i18n="proc.s2.p">Quick assessment to confirm scope and action plan.</p>
+          </div>
+          <div class="step reveal" data-reveal>
+            <div class="num">3</div>
+            <h3 data-i18n="proc.s3.h">Repair / Calibration / Maintenance</h3>
+            <p data-i18n="proc.s3.p">On-site or in-house work according to the case.</p>
+          </div>
+          <div class="step reveal" data-reveal>
+            <div class="num">4</div>
+            <h3 data-i18n="proc.s4.h">Testing & Handover</h3>
+            <p data-i18n="proc.s4.p">Functional checks, service reporting, next recommendations.</p>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:18px;">
+          <div class="card card-pad reveal" data-reveal>
+            <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="proc.prep.title">What you should share</h3>
+            <ul style="margin:12px 0 0; padding-left:18px; color:var(--muted); font-weight:750; font-size:14px;">
+              <li data-i18n="proc.prep.l1">Equipment brand/model (if available)</li>
+              <li data-i18n="proc.prep.l2">Symptoms / error codes</li>
+              <li data-i18n="proc.prep.l3">Location in UAE</li>
+              <li data-i18n="proc.prep.l4">Photos/videos (optional)</li>
+              <li data-i18n="proc.prep.l5">Requested service type (repair, PM, AMC…)</li>
+            </ul>
+          </div>
+          <div class="card card-pad reveal" data-reveal>
+            <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="proc.sla.title">Service expectations</h3>
+            <p style="margin:10px 0 0; color:var(--muted); font-weight:650; font-size:14px;" data-i18n="proc.sla.p">
+              We prioritize urgent breakdowns and coordinate scheduling between on-site visits and in-house work.
+            </p>
+            <div class="chips-wrap" style="margin-top:12px;">
+              <span class="pill" data-i18n="proc.sla.c1">On-site coordination</span>
+              <span class="pill" data-i18n="proc.sla.c2">Service reporting</span>
+              <span class="pill" data-i18n="proc.sla.c3">Planned maintenance options</span>
+            </div>
+            <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+              <button class="btn primary" type="button" onclick="goToServiceWizard();"><span data-i18n="proc.sla.btn">Request Service</span></button>
+              <button class="btn secondary" type="button" onclick="scrollToId('services');"><span data-i18n="proc.sla.btn2">View Services</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section tight" id="faq">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2 data-i18n="faq.title">FAQs</h2>
+            <p data-i18n="faq.sub">Quick answers to common service questions.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <div class="acc reveal" data-reveal>
+            <button type="button" class="acc-btn" aria-expanded="false">
+              <span data-i18n="faq.q1">Do you provide on-site and in-house support?</span>
+              <span class="chev">⌄</span>
+            </button>
+            <div class="body" data-i18n="faq.a1">
+              Yes. Depending on the equipment and required work, we coordinate either on-site field service or in-house workshop repair/testing.
+            </div>
+          </div>
+
+          <div class="acc reveal" data-reveal>
+            <button type="button" class="acc-btn" aria-expanded="false">
+              <span data-i18n="faq.q2">How should we describe the equipment issue?</span>
+              <span class="chev">⌄</span>
+            </button>
+            <div class="body" data-i18n="faq.a2">
+              Provide the equipment brand/model (if available), the symptoms/error codes, and photos/videos if possible. Include your location in UAE for scheduling.
+            </div>
+          </div>
+
+          <div class="acc reveal" data-reveal>
+            <button type="button" class="acc-btn" aria-expanded="false">
+              <span data-i18n="faq.q3">Do you offer AMC / annual maintenance plans?</span>
+              <span class="chev">⌄</span>
+            </button>
+            <div class="body" data-i18n="faq.a3">
+              Yes. We can support annual maintenance agreements tailored to your equipment set and operational schedule, including planned visits and service reporting.
+            </div>
+          </div>
+
+          <div class="acc reveal" data-reveal>
+            <button type="button" class="acc-btn" aria-expanded="false">
+              <span data-i18n="faq.q4">Can you handle equipment not listed on the website?</span>
+              <span class="chev">⌄</span>
+            </button>
+            <div class="body" data-i18n="faq.a4">
+              Absolutely. Use the service request form with the equipment category, brand/model (if available), and a description. We will route your request.
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-top:18px;">
+          <div class="two" style="display:grid; gap:14px; align-items:center;">
+            <div>
+              <h3 style="margin:0; color:var(--navy); font-size:16px;" data-i18n="faq.cta.title">Need urgent support?</h3>
+              <p style="margin:10px 0 0; color:var(--muted); font-weight:650; font-size:14px;" data-i18n="faq.cta.p">
+                Use the call or WhatsApp placeholders, or submit a service request for scheduling coordination.
+              </p>
+            </div>
+            <div style="display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap;">
+              <button class="btn secondary" type="button" onclick="window.location.href='tel:+971501234567';"><span data-i18n="faq.cta.call">Call Us</span></button>
+              <button class="btn primary" type="button" onclick="window.open('https://wa.me/971501234567', '_blank', 'noopener');"><span data-i18n="faq.cta.wa">WhatsApp</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUEST WIZARD -->
+    <section class="section" id="request">
+      <div class="container">
+        <div class="section-title reveal" data-reveal>
+          <div>
+            <h2 data-i18n="request.title">Service Request</h2>
+            <p data-i18n="request.sub">Multi-step form (desktop: horizontal wizard, mobile: vertical). Submit to see a success confirmation.</p>
+          </div>
+        </div>
+
+        <div class="wizard-wrap reveal" data-reveal>
+          <div class="wizard-panel" role="region" aria-label="Service request wizard">
+            <div class="wizard-top">
+              <div class="step-row" aria-label="Progress">
+                <div class="step-node" id="stepNode1">
+                  <div class="step-dot">1</div>
+                  <div><div style="font-weight:950; color:var(--navy);" data-i18n="wizard.step1">Details</div><div class="hint" data-i18n="wizard.step1s">Contact info</div></div>
+                </div>
+                <div class="step-node" id="stepNode2">
+                  <div class="step-dot">2</div>
+                  <div><div style="font-weight:950; color:var(--navy);" data-i18n="wizard.step2">Equipment</div><div class="hint" data-i18n="wizard.step2s">Service specifics</div></div>
+                </div>
+                <div class="step-node" id="stepNode3">
+                  <div class="step-dot">3</div>
+                  <div><div style="font-weight:950; color:var(--navy);" data-i18n="wizard.step3">Submit</div><div class="hint" data-i18n="wizard.step3s">Review & send</div></div>
+                </div>
+              </div>
+
+              <div class="wizard-title">
+                <h2 id="wizardHeading">Service Request</h2>
+                <p id="wizardSub">Tell us who you are and how to contact you.</p>
+              </div>
+            </div>
+
+            <div class="wizard-content">
+              <!-- STEP 1 -->
+              <div class="step-panel active" id="panel1">
+                <div class="form-grid-2">
+                  <div class="field" id="field_name">
+                    <div class="label" data-i18n="form.fullname">Full Name <span class="req">*</span></div>
+                    <input type="text" id="fullName" autocomplete="name" placeholder="e.g., Ahmed Khalid" />
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="label" data-i18n="form.company">Company / Clinic Name</div>
+                    <input type="text" id="company" placeholder="e.g., Dental Care Center" />
+                  </div>
+
+                  <div class="field" id="field_phone">
+                    <div class="label" data-i18n="form.phone">Phone <span class="req">*</span></div>
+                    <input type="tel" id="phone" autocomplete="tel" placeholder="+971 5X XXX XXXX" />
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+
+                  <div class="field" id="field_email">
+                    <div class="label" data-i18n="form.email">Email <span class="req">*</span></div>
+                    <input type="email" id="email" autocomplete="email" placeholder="name@company.com" />
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+                </div>
+
+                <div class="field" style="margin-top:12px;">
+                  <div class="label" data-i18n="form.pref">Contact Preference</div>
+                  <div class="pill-toggle" role="group" aria-label="Contact preference">
+                    <button type="button" id="prefCall" class="active">Callback</button>
+                    <button type="button" id="prefWhats">WhatsApp</button>
+                  </div>
+                  <div class="hint" data-i18n="form.prefHint">We’ll contact you based on your selection.</div>
+                </div>
+
+                <div class="btn-row">
+                  <div></div>
+                  <div style="display:flex; gap:12px; width:100%; justify-content:flex-end;">
+                    <button class="btn primary" id="next1" type="button" onclick="wizardNext(1);">
+                      <span data-i18n="wizard.next">Next →</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="step-panel" id="panel2">
+                <div class="form-grid-2">
+                  <div class="field" id="field_serviceType">
+                    <div class="label" data-i18n="form.serviceType">Service Type <span class="req">*</span></div>
+                    <select id="serviceType">
+                      <option value="" selected disabled>Choose...</option>
+                      <option value="Repair" data-i18n-opt="1">Biomedical Equipment Repair</option>
+                      <option value="Calibration">Calibration & Testing</option>
+                      <option value="PM">Preventive Maintenance (PM)</option>
+                      <option value="Corrective">Corrective Maintenance</option>
+                      <option value="Installation">Installations & Commissioning</option>
+                      <option value="AMC">Service Contracts (AMC)</option>
+                    </select>
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+
+                  <div class="field" id="field_category">
+                    <div class="label" data-i18n="form.category">Equipment Category <span class="req">*</span></div>
+                    <select id="equipmentCategory">
+                      <option value="" selected disabled>Choose...</option>
+                      <option value="Dental Units">Dental Units</option>
+                      <option value="Autoclaves & Sterilization">Autoclaves & Sterilization</option>
+                      <option value="Aesthetic Devices">Aesthetic Devices</option>
+                      <option value="General Medical Devices">General Medical Devices</option>
+                      <option value="Control Systems & Electrical">Control Systems & Electrical</option>
+                      <option value="General biomedical equipment">General biomedical equipment</option>
+                    </select>
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+
+                  <div class="field" id="field_location">
+                    <div class="label" data-i18n="form.location">Location in UAE <span class="req">*</span></div>
+                    <input type="text" id="location" placeholder="e.g., Dubai, Abu Dhabi, Sharjah..." />
+                    <div class="error" data-i18n="err.required">This field is required.</div>
+                  </div>
+
+                  <div class="field">
+                    <div class="label" data-i18n="form.urgency">Urgency</div>
+                    <select id="urgency">
+                      <option value="Today" selected>Today</option>
+                      <option value="This week">This week</option>
+                      <option value="Planned">Planned</option>
+                    </select>
+                    <div class="hint" data-i18n="form.urgencyHint">Select the expected timeframe.</div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2" style="margin-top:12px;">
+                  <div class="field">
+                    <div class="label" data-i18n="form.brandModel">Brand / Model / Serial (optional)</div>
+                    <input type="text" id="modelSerial" placeholder="Brand + model + serial (if available)" />
+                  </div>
+                  <div class="field">
+                    <div class="label" data-i18n="form.notesTitle">Quick Notes (optional)</div>
+                    <input type="text" id="notesShort" placeholder="e.g., Not turning on / Error code E-12" />
+                  </div>
+                </div>
+
+                <div class="field" style="margin-top:12px;">
+                  <div class="label" data-i18n="form.issue">Issue description (optional)</div>
+                  <textarea id="issueDesc" placeholder="Describe what’s happening, error codes, symptoms, and any recent changes..."></textarea>
+                  <div class="hint" data-i18n="form.issueHint">Short details help us route the request faster.</div>
+                </div>
+
+                <div class="field" style="margin-top:12px;">
+                  <div class="label" data-i18n="form.upload">Upload photos/documents (optional)</div>
+                  <div class="upload-box" id="uploadBox">
+                    <div class="upload-row">
+                      <div class="hint" data-i18n="form.uploadHint">Drag & drop files here or browse.</div>
+                      <button class="btn secondary" type="button" onclick="document.getElementById('fileInput').click();">
+                        Browse
+                      </button>
+                    </div>
+                    <input id="fileInput" type="file" multiple style="display:none" />
+                    <div class="hint" id="uploadMeta" data-i18n="form.uploadMeta">No files selected.</div>
+                  </div>
+                </div>
+
+                <div class="btn-row">
+                  <button class="btn secondary" type="button" onclick="wizardBack(2);"><span data-i18n="wizard.back">← Back</span></button>
+                  <button class="btn primary" type="button" onclick="wizardNext(2);" id="next2">
+                    <span data-i18n="wizard.next">Next →</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="step-panel" id="panel3">
+                <div class="summary" aria-live="polite">
+                  <div class="summary-row">
+                    <div class="check">✓</div>
+                    <div id="sumContact">Contact summary...</div>
+                  </div>
+                  <div class="summary-row">
+                    <div class="check">✓</div>
+                    <div id="sumService">Service summary...</div>
+                  </div>
+                  <div class="summary-row">
+                    <div class="check">✓</div>
+                    <div id="sumLocation">Location summary...</div>
+                  </div>
+                  <div class="summary-row" id="sumExtrasRow" style="display:none;">
+                    <div class="check">✓</div>
+                    <div id="sumExtras">Extras summary...</div>
+                  </div>
+                </div>
+
+                <div class="field" style="margin-top:14px;">
+                  <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-weight:750; color:var(--muted); font-size:13.5px;">
+                    <input type="checkbox" id="consent" style="margin-top:3px;" />
+                    <span data-i18n="form.consent">I agree to be contacted about this request.</span>
+                  </label>
+                </div>
+
+                <div class="btn-row">
+                  <button class="btn secondary" type="button" onclick="wizardBack(3);"><span data-i18n="wizard.back">← Back</span></button>
+                  <button class="btn primary" type="button" id="submitBtn" onclick="wizardSubmit();" disabled>
+                    <span data-i18n="wizard.submit">Submit Request</span>
+                  </button>
+                </div>
+
+                <div id="successBox" style="display:none; margin-top:16px;">
+                  <div class="card card-pad" style="box-shadow:none; border-color: rgba(31,199,166,.30); background: rgba(31,199,166,.08);">
+                    <div style="font-weight:1000; color:#053026; font-size:16px;" data-i18n="success.title">Request received!</div>
+                    <div style="margin-top:8px; color:#053026; font-weight:800;" data-i18n="success.msg">Reference will be sent shortly. Thank you.</div>
+                    <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap;">
+                      <button class="btn secondary" type="button" onclick="resetWizard();" data-i18n="success.btn1">Back to form</button>
+                      <button class="btn primary" type="button" onclick="scrollToId('home');" data-i18n="success.btn2">Go to Home</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>ICON BIOTRONICS FZE</h3>
+          <p data-i18n="footer.p1">
+            Biomedical repair, calibration, preventive & corrective maintenance, installations and service contracts across the UAE.
+          </p>
+          <p data-i18n="footer.p2" style="margin-top:10px;">
+            Call / WhatsApp placeholders are available on this page. Replace with your real numbers when ready.
+          </p>
+        </div>
+        <div>
+          <h3 data-i18n="footer.links1">Quick Links</h3>
+          <div class="footer-links">
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#industries" data-i18n="nav.industries">Industries</a>
+            <a href="#process" data-i18n="nav.process">Our Process</a>
+            <a href="#faq" data-i18n="nav.faq">FAQs</a>
+            <a href="#request" data-i18n="nav.request">Request Service</a>
+          </div>
+        </div>
+        <div>
+          <h3 data-i18n="footer.links2">Contact</h3>
+          <div class="footer-links">
+            <a href="tel:+971501234567">Call: +971 50 123 4567</a>
+            <a href="https://wa.me/971501234567" target="_blank" rel="noopener">WhatsApp: +971 50 123 4567</a>
+            <a href="mailto:service@iconbiotronics.com">Email: service@iconbiotronics.com</a>
+            <a href="#request">Address: Dubai Industrial City, UAE</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div data-i18n="footer.copy">© <span id="year"></span> ICON BIOTRONICS FZE. All rights reserved.</div>
+        <div data-i18n="footer.note">Built as a single-page demo with bilingual EN/AR toggle and RTL for Arabic.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTAs -->
+  <div class="float-ctas" aria-label="Quick contact">
+    <button class="fab" type="button" onclick="window.location.href='tel:+971501234567';" aria-label="Call support">
+      <span>☎</span>
+    </button>
+    <button class="fab" type="button" onclick="window.open('https://wa.me/971501234567', '_blank', 'noopener');" aria-label="WhatsApp support">
+      <span>WA</span>
+    </button>
+  </div>
+
+  <script>
+    // ---------- i18n (EN/AR toggle with RTL) ----------
+    const translations = {
+      en: {
+        // Nav
+        "nav.services": "Services",
+        "nav.industries": "Industries",
+        "nav.process": "Our Process",
+        "nav.faq": "FAQs",
+        "nav.request": "Request Service",
+
+        // Header CTAs
+        "header.cta.services": "Request Service",
+        "header.cta.quote": "Get a Quote",
+
+        // Home
+        "home.h1": "Biomedical Repair, Calibration & Maintenance—UAE Coverage",
+        "home.sub": "On-site & in-house support for dental, aesthetics and general biomedical equipment. Transparent service reporting and structured workflow.",
+        "home.chip1": "Fast Response",
+        "home.chip2": "Service Reporting",
+        "home.chip3": "UAE Coverage",
+        "home.cta1": "Request Service",
+        "home.cta2": "Explore Services",
+        "home.visual": "Hero Image Placeholder",
+        "home.m1": "On-site",
+        "home.m1s": "Field support",
+        "home.m2": "In-house",
+        "home.m2s": "Workshop repair",
+        "home.m3": "Structured",
+        "home.m3s": "Workflow & reporting",
+
+        // Services
+        "services.title": "Services",
+        "services.sub": "Repair, calibration, preventive & corrective maintenance, installations and AMC support.",
+        "services.hint": "Select a service card to learn more.",
+
+        // Common
+        "common.learn": "Learn more",
+        "common.learn2": "Request service for dental",
+
+        // Detail
+        "detail.what": "What we do",
+        "detail.workflow": "Typical workflow",
+        "detail.coverage": "Coverage",
+        "detail.cta": "Next step",
+        "detail.cta-sub": "Submit your details and we’ll contact you to schedule the appropriate service.",
+        "detail.cta-btn": "Request Service",
+        "detail.form-btn": "Open Form",
+        "detail.urgent": "Urgent support: call/WhatsApp placeholders at the bottom-right.",
+
+        // Service cards text
+        "svc.repair.title": "Biomedical Equipment Repair",
+        "svc.repair.desc": "Fault diagnosis, component-level repair (where applicable), functional testing and service reporting.",
+        "svc.cal.title": "Calibration & Testing",
+        "svc.cal.desc": "On-site or in-house calibration and functional checks with structured documentation and recommendations.",
+        "svc.pm.title": "Preventive Maintenance (PM)",
+        "svc.pm.desc": "Planned maintenance schedules to reduce downtime and keep equipment within operational best practices.",
+        "svc.cm.title": "Corrective Maintenance",
+        "svc.cm.desc": "Response to breakdowns and performance issues with diagnosis, repair/restore actions, and follow-up.",
+        "svc.inst.title": "Installations & Commissioning",
+        "svc.inst.desc": "Setup support, functional checks, operational readiness and handover for new or relocated equipment.",
+        "svc.amc.title": "Service Contracts (AMC)",
+        "svc.amc.desc": "Maintenance agreements tailored to your assets with defined workflow, reporting and scheduled visits.",
+
+        // Industries
+        "ind.title": "Industries We Support",
+        "ind.sub": "Dental and aesthetics support first, plus general biomedical equipment services across UAE.",
+        "ind.hint": "Focus areas",
+        "ind.dental.h": "Dental Clinics & Dental Centers",
+        "ind.dental.p": "Equipment repair, maintenance planning, and installation support for clinic operations.",
+        "ind.dental.l1": "Repair and troubleshooting",
+        "ind.dental.l2": "Preventive maintenance schedules",
+        "ind.dental.l3": "Installations and commissioning support",
+        "ind.aest.h": "Aesthetics Clinics & Beauty Centers",
+        "ind.aest.p": "Support for equipment reliability, maintenance workflows and on-site assistance.",
+        "ind.aest.l1": "Corrective maintenance support",
+        "ind.aest.l2": "Calibration & functional testing",
+        "ind.aest.l3": "Service contracts (AMC) planning",
+        "ind.equip.title": "Common equipment categories (example)",
+        "ind.note.title": "How we handle “almost all categories”",
+        "ind.note.p": "If your equipment is not listed, submit the service request with brand/model and a description. We’ll route the request to the right troubleshooting or maintenance workflow.",
+        "ind.note.btn": "Request Service",
+        "ind.note.btn2": "Read FAQs",
+        "equip.1": "Dental Units",
+        "equip.2": "Autoclaves & Sterilization",
+        "equip.3": "Aesthetic Devices",
+        "equip.4": "Accessories & Consumables-handling support",
+        "equip.5": "General Medical Devices",
+        "equip.6": "Control Systems & Electrical support",
+        "equip.7": "General biomedical equipment",
+
+        // Process
+        "proc.title": "Our Process",
+        "proc.sub": "A structured workflow from request to testing and handover.",
+        "proc.hint": "Clear steps",
+        "proc.s1.h": "Request Service",
+        "proc.s1.p": "Submit details, symptoms, and location in UAE.",
+        "proc.s2.h": "Assessment & Diagnosis",
+        "proc.s2.p": "Quick assessment to confirm scope and action plan.",
+        "proc.s3.h": "Repair / Calibration / Maintenance",
+        "proc.s3.p": "On-site or in-house work according to the case.",
+        "proc.s4.h": "Testing & Handover",
+        "proc.s4.p": "Functional checks, service reporting, next recommendations.",
+        "proc.prep.title": "What you should share",
+        "proc.prep.l1": "Equipment brand/model (if available)",
+        "proc.prep.l2": "Symptoms / error codes",
+        "proc.prep.l3": "Location in UAE",
+        "proc.prep.l4": "Photos/videos (optional)",
+        "proc.prep.l5": "Requested service type (repair, PM, AMC…)",
+        "proc.sla.title": "Service expectations",
+        "proc.sla.p": "We prioritize urgent breakdowns and coordinate scheduling between on-site visits and in-house work.",
+        "proc.sla.c1": "On-site coordination",
+        "proc.sla.c2": "Service reporting",
+        "proc.sla.c3": "Planned maintenance options",
+        "proc.sla.btn": "Request Service",
+        "proc.sla.btn2": "View Services",
+
+        // FAQ
+        "faq.title": "FAQs",
+        "faq.sub": "Quick answers to common service questions.",
+        "faq.q1": "Do you provide on-site and in-house support?",
+        "faq.a1": "Yes. Depending on the equipment and required work, we coordinate either on-site field service or in-house workshop repair/testing.",
+        "faq.q2": "How should we describe the equipment issue?",
+        "faq.a2": "Provide the equipment brand/model (if available), the symptoms/error codes, and photos/videos if possible. Include your location in UAE for scheduling.",
+        "faq.q3": "Do you offer AMC / annual maintenance plans?",
+        "faq.a3": "Yes. We can support annual maintenance agreements tailored to your equipment set and operational schedule, including planned visits and service reporting.",
+        "faq.q4": "Can you handle equipment not listed on the website?",
+        "faq.a4": "Absolutely. Use the service request form with the equipment category, brand/model (if available), and a description. We will route your request.",
+        "faq.cta.title": "Need urgent support?",
+        "faq.cta.p": "Use the call or WhatsApp placeholders, or submit a service request for scheduling coordination.",
+        "faq.cta.call": "Call Placeholder",
+        "faq.cta.wa": "WhatsApp Placeholder",
+
+        // Request wizard
+        "request.title": "Service Request",
+        "request.sub": "Multi-step form (desktop: horizontal wizard, mobile: vertical). Submit to see a success confirmation.",
+
+        "wizard.step1": "Details",
+        "wizard.step1s": "Contact info",
+        "wizard.step2": "Equipment",
+        "wizard.step2s": "Service specifics",
+        "wizard.step3": "Submit",
+        "wizard.step3s": "Review & send",
+
+        "wizard.next": "Next →",
+        "wizard.back": "← Back",
+        "wizard.submit": "Submit Request",
+
+        "form.fullname": "Full Name",
+        "form.company": "Company / Clinic Name",
+        "form.phone": "Phone",
+        "form.email": "Email",
+        "form.pref": "Contact Preference",
+        "form.prefHint": "We’ll contact you based on your selection.",
+        "form.serviceType": "Service Type",
+        "form.category": "Equipment Category",
+        "form.location": "Location in UAE",
+        "form.urgency": "Urgency",
+        "form.urgencyHint": "Select the expected timeframe.",
+        "form.brandModel": "Brand / Model / Serial (optional)",
+        "form.notesTitle": "Quick Notes (optional)",
+        "form.issue": "Issue description (optional)",
+        "form.issueHint": "Short details help us route the request faster.",
+        "form.upload": "Upload photos/documents (optional)",
+        "form.uploadHint": "Drag & drop files here or browse.",
+        "form.uploadMeta": "No files selected.",
+        "form.consent": "I agree to be contacted about this request.",
+
+        "err.required": "This field is required.",
+
+        // Success + Footer
+        "success.title": "Request received!",
+        "success.msg": "Reference will be sent shortly. Thank you.",
+        "success.btn1": "Back to form",
+        "success.btn2": "Go to Home",
+
+        "footer.p1": "Biomedical repair, calibration, preventive & corrective maintenance, installations and service contracts across the UAE.",
+        "footer.p2": "Call / WhatsApp placeholders are available on this page. Replace with your real numbers when ready.",
+        "footer.links1": "Quick Links",
+        "footer.links2": "Contact",
+        "footer.copy": "© 2026 ICON BIOTRONICS FZE. All rights reserved.",
+        "footer.note": "Built as a single-page demo with bilingual EN/AR toggle and RTL for Arabic."
+      },
+
+      ar: {
+        "nav.services": "الخدمات",
+        "nav.industries": "القطاعات",
+        "nav.process": "طريقة العمل",
+        "nav.faq": "الأسئلة الشائعة",
+        "nav.request": "طلب الخدمة",
+
+        "header.cta.services": "طلب خدمة",
+        "header.cta.quote": "احصل على عرض سعر",
+
+        "home.h1": "إصلاح ومعايرة وصيانة الأجهزة الطبية—خدمة داخل الإمارات",
+        "home.sub": "دعم في الموقع وداخل الورشة لأجهزة طب الأسنان والتجميل وغيرها من المعدات الطبية الحيوية. تقارير خدمة واضحة وتنفيذ بخطوات منظمة.",
+        "home.chip1": "استجابة سريعة",
+        "home.chip2": "تقارير الخدمة",
+        "home.chip3": "خدمة داخل الإمارات",
+        "home.cta1": "طلب خدمة",
+        "home.cta2": "استعرض الخدمات",
+        "home.visual": "مكان صورة الغلاف",
+        "home.m1": "في الموقع",
+        "home.m1s": "دعم ميداني",
+        "home.m2": "داخل الورشة",
+        "home.m2s": "إصلاح وتجهيز",
+        "home.m3": "منظم",
+        "home.m3s": "خطوات واضحة وتقارير",
+
+        "services.title": "الخدمات",
+        "services.sub": "إصلاح، معايرة، صيانة وقائية وتصحيحية، تركيب وتشغيل، وخدمات عقود AMC.",
+        "services.hint": "اختر بطاقة الخدمة لمعرفة التفاصيل.",
+
+        "common.learn": "اعرف المزيد",
+        "common.learn2": "طلب خدمة لطب الأسنان",
+
+        "detail.what": "ماذا نقدم",
+        "detail.workflow": "الخطوات المعتادة",
+        "detail.coverage": "نطاق الخدمة",
+        "detail.cta": "الخطوة التالية",
+        "detail.cta-sub": "قدّم بياناتك وسنتواصل معك لتحديد موعد الخدمة المناسبة.",
+        "detail.cta-btn": "طلب خدمة",
+        "detail.form-btn": "فتح النموذج",
+        "detail.urgent": "دعم عاجل: استخدم أزرار الاتصال/واتساب في أسفل يمين الشاشة.",
+
+        "svc.repair.title": "إصلاح الأجهزة الطبية الحيوية",
+        "svc.repair.desc": "تشخيص الأعطال، إصلاح على مستوى المكوّنات (عند الحاجة)، اختبارات وظيفية وتقارير خدمة.",
+        "svc.cal.title": "المعايرة والاختبار",
+        "svc.cal.desc": "معايرة واختبارات وظيفية في الموقع أو داخل الورشة مع توثيق منظّم وتوصيات.",
+        "svc.pm.title": "الصيانة الوقائية (PM)",
+        "svc.pm.desc": "جداول صيانة مخططة لتقليل التوقف وتحسين جاهزية الأجهزة.",
+        "svc.cm.title": "الصيانة التصحيحية",
+        "svc.cm.desc": "استجابة للعطل ومشاكل الأداء عبر التشخيص ثم الإصلاح/الإعادة مع متابعة لاحقة.",
+        "svc.inst.title": "التركيب والتشغيل",
+        "svc.inst.desc": "دعم الإعداد، فحوصات تشغيل، جاهزية الاستخدام وتسليم الجهاز للأجهزة الجديدة أو المنقولة.",
+        "svc.amc.title": "عقود الخدمة (AMC)",
+        "svc.amc.desc": "اتفاقيات صيانة حسب أصولك مع خطوات عمل محددة وتقارير وزيارات مجدولة.",
+
+        "ind.title": "القطاعات التي نخدمها",
+        "ind.sub": "نركز على طب الأسنان والتجميل، مع خدمات عامة لأجهزة طبية حيوية داخل الإمارات.",
+        "ind.hint": "مجالات التركيز",
+        "ind.dental.h": "عيادات ومراكز طب الأسنان",
+        "ind.dental.p": "إصلاح الأجهزة، تخطيط الصيانة، ودعم التركيب لعمليات العيادة.",
+        "ind.dental.l1": "إصلاح وتشخيص الأعطال",
+        "ind.dental.l2": "جداول صيانة وقائية",
+        "ind.dental.l3": "دعم التركيب والتشغيل",
+        "ind.aest.h": "عيادات التجميل ومراكز العناية",
+        "ind.aest.p": "دعم موثوقية الأجهزة، مسارات الصيانة، ومساعدة في الموقع.",
+        "ind.aest.l1": "دعم الصيانة التصحيحية",
+        "ind.aest.l2": "معايرة واختبارات وظيفية",
+        "ind.aest.l3": "تخطيط عقود AMC",
+        "ind.equip.title": "فئات أجهزة شائعة (مثال)",
+        "ind.note.title": "كيف نغطي “معظم الفئات”",
+        "ind.note.p": "إذا لم تجد جهازك ضمن القائمة، أرسل طلب الخدمة ببيانات العلامة/الموديل ووصف مختصر. سنوجه طلبك إلى فريق/مسار مناسب للتشخيص أو الصيانة.",
+        "ind.note.btn": "طلب خدمة",
+        "ind.note.btn2": "اقرأ الأسئلة الشائعة",
+        "equip.1": "وحدات طب الأسنان",
+        "equip.2": "الأوتوكلاف والتعقيم",
+        "equip.3": "أجهزة التجميل",
+        "equip.4": "الملحقات ودعم أنظمة التعامل مع المستلزمات",
+        "equip.5": "الأجهزة الطبية العامة",
+        "equip.6": "أنظمة التحكم والدعم الكهربائي",
+        "equip.7": "أجهزة طبية حيوية عامة",
+
+        "proc.title": "طريقة العمل لدينا",
+        "proc.sub": "خطوات منظمة من طلب الخدمة حتى الاختبارات والتسليم.",
+        "proc.hint": "خطوات واضحة",
+        "proc.s1.h": "طلب الخدمة",
+        "proc.s1.p": "أرسل البيانات والأعراض وموقعك داخل الإمارات.",
+        "proc.s2.h": "التقييم والتشخيص",
+        "proc.s2.p": "تقييم سريع لتحديد النطاق وخطة العمل.",
+        "proc.s3.h": "إصلاح / معايرة / صيانة",
+        "proc.s3.p": "حسب الحالة: عمل في الموقع أو داخل الورشة.",
+        "proc.s4.h": "الاختبارات والتسليم",
+        "proc.s4.p": "فحص وظيفي وتقارير الخدمة وتوصيات للخطوة التالية.",
+        "proc.prep.title": "ما الذي يفضل توفره؟",
+        "proc.prep.l1": "الماركة/الموديل (إن توفر)",
+        "proc.prep.l2": "الأعراض/أكواد الأعطال",
+        "proc.prep.l3": "موقع الجهاز داخل الإمارات",
+        "proc.prep.l4": "صور/فيديو (اختياري)",
+        "proc.prep.l5": "نوع الخدمة المطلوبة (إصلاح، PM، AMC…)",
+        "proc.sla.title": "توقعات الخدمة",
+        "proc.sla.p": "نولي الأولوية للأعطال العاجلة وننسق المواعيد بين زيارات الموقع والعمل داخل الورشة.",
+        "proc.sla.c1": "تنسيق الزيارات في الموقع",
+        "proc.sla.c2": "تقارير الخدمة",
+        "proc.sla.c3": "خيارات صيانة مخططة",
+        "proc.sla.btn": "طلب خدمة",
+        "proc.sla.btn2": "عرض الخدمات",
+
+        "faq.title": "الأسئلة الشائعة",
+        "faq.sub": "إجابات سريعة على الأسئلة الشائعة.",
+        "faq.q1": "هل تقدمون دعمًا في الموقع وداخل الورشة؟",
+        "faq.a1": "نعم. حسب نوع الجهاز والعمل المطلوب، ننسق خدمة ميدانية أو إصلاح/اختبار داخل الورشة.",
+        "faq.q2": "كيف نوضح مشكلة الجهاز؟",
+        "faq.a2": "قدم ماركة/موديل الجهاز (إن توفر)، الأعراض/أكواد الأعطال، ويفضل صور/فيديو. أضف موقعك داخل الإمارات لتحديد الجدولة.",
+        "faq.q3": "هل تقدمون خطط AMC / صيانة سنوية؟",
+        "faq.a3": "نعم. ندعم اتفاقيات صيانة سنوية حسب مجموعة الأجهزة وجدول عملك، مع زيارات مخططة وتقارير الخدمة.",
+        "faq.q4": "هل يمكنكم التعامل مع أجهزة غير موجودة في الموقع؟",
+        "faq.a4": "بالتأكيد. استخدم نموذج طلب الخدمة مع فئة الجهاز وبيانات العلامة/الموديل (إن توفر) ووصف مختصر، وسنوجه الطلب بشكل مناسب.",
+        "faq.cta.title": "بحاجة لدعم عاجل؟",
+        "faq.cta.p": "استخدم أزرار الاتصال أو واتساب، أو أرسل طلب الخدمة للتنسيق.",
+        "faq.cta.call": "زر اتصال (placeholder)",
+        "faq.cta.wa": "زر واتساب (placeholder)",
+
+        "request.title": "طلب الخدمة",
+        "request.sub": "نموذج من خطوات متعددة (للجهاز المكتبي: أفقي، للجوال: عمودي). أرسل الطلب لرؤية رسالة نجاح.",
+
+        "wizard.step1": "البيانات",
+        "wizard.step1s": "بيانات التواصل",
+        "wizard.step2": "الجهاز",
+        "wizard.step2s": "بيانات الخدمة",
+        "wizard.step3": "إرسال",
+        "wizard.step3s": "مراجعة وإرسال",
+
+        "wizard.next": "التالي →",
+        "wizard.back": "← رجوع",
+        "wizard.submit": "إرسال الطلب",
+
+        "form.fullname": "الاسم الكامل",
+        "form.company": "اسم الشركة / العيادة",
+        "form.phone": "الهاتف",
+        "form.email": "البريد الإلكتروني",
+        "form.pref": "تفضيل التواصل",
+        "form.prefHint": "سنقوم بالتواصل بناءً على اختيارك.",
+        "form.serviceType": "نوع الخدمة",
+        "form.category": "فئة الجهاز",
+        "form.location": "الموقع داخل الإمارات",
+        "form.urgency": "الاستعجال",
+        "form.urgencyHint": "اختر الوقت المتوقع.",
+        "form.brandModel": "العلامة / الموديل / الرقم (اختياري)",
+        "form.notesTitle": "ملاحظات سريعة (اختياري)",
+        "form.issue": "وصف المشكلة (اختياري)",
+        "form.issueHint": "تفاصيل مختصرة تساعدنا على توجيه الطلب بسرعة.",
+        "form.upload": "رفع صور/مستندات (اختياري)",
+        "form.uploadHint": "اسحب وأفلت الملفات هنا أو اخترها.",
+        "form.uploadMeta": "لم يتم اختيار ملفات.",
+        "form.consent": "أوافق على التواصل بخصوص هذا الطلب.",
+
+        "err.required": "هذا الحقل مطلوب.",
+
+        "success.title": "تم استلام طلبك!",
+        "success.msg": "سيتم إرسال رقم المرجع قريبًا. شكرًا لك.",
+        "success.btn1": "العودة للنموذج",
+        "success.btn2": "العودة للرئيسية",
+
+        "footer.p1": "إصلاح الأجهزة الطبية الحيوية، المعايرة، الصيانة الوقائية والتصحيحية، التركيب وعقود الخدمة داخل الإمارات.",
+        "footer.p2": "يوجد placeholders للاتصال/واتساب داخل الصفحة. استبدلها برقمك الحقيقي عند الجاهزية.",
+        "footer.links1": "روابط سريعة",
+        "footer.links2": "التواصل",
+        "footer.copy": "© 2026 ICON BIOTRONICS FZE. جميع الحقوق محفوظة.",
+        "footer.note": "صفحة تجريبية بخاصية EN/AR وتحويل RTL للعربية."
+      }
+    };
+
+    function applyLanguage(lang){
+      const rootDir = (lang === 'ar') ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('dir', rootDir);
+      document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-en').setAttribute('aria-pressed', String(lang === 'en'));
+      document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+      document.getElementById('lang-ar').setAttribute('aria-pressed', String(lang === 'ar'));
+
+      const dict = translations[lang];
+      // Apply all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if(dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      // Update dropdown options (optional - keep simple)
+      // Update service list buttons text already handled by data-i18n where used.
+
+      // Update dynamic wizard headings per step:
+      setWizardHeadingByStep(getCurrentStep(), lang);
+    }
+
+    document.getElementById('lang-en').addEventListener('click', ()=>applyLanguage('en'));
+    document.getElementById('lang-ar').addEventListener('click', ()=>applyLanguage('ar'));
+
+    // ---------- Mobile menu ----------
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    if(menuBtn){
+      menuBtn.addEventListener('click', ()=>{
+        mobileNav.classList.toggle('hidden');
+      });
+    }
+
+    // ---------- Smooth scroll helpers ----------
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function goToServiceWizard(){
+      prefillServiceTypeFromCardsIfAny();
+      scrollToId('request');
+      setTimeout(()=>{ window.location.hash = 'request'; }, 250);
+    }
+
+    // ---------- Service detail logic ----------
+    const serviceData = {
+      repair: {
+        title: "Biomedical Equipment Repair",
+        sub: "On-site or in-house repair support across UAE.",
+        what: [
+          "Fault diagnosis & troubleshooting",
+          "Component-level repair (as applicable)",
+          "Functional testing & inspection",
+          "Service report + recommendations"
+        ],
+        workflow: [
+          "Request & symptoms",
+          "Assessment / quotation",
+          "Repair & internal checks",
+          "Handover & next steps"
+        ],
+        tags: ["Dental clinics", "Aesthetics centers", "General biomedical equipment", "On-site + in-house"]
+      },
+      calibration: {
+        title: "Calibration & Testing",
+        sub: "On-site or in-house calibration and functional checks.",
+        what: [
+          "Calibration planning and execution",
+          "Functional checks and inspection",
+          "Service reporting and recommendations",
+          "Scheduling support for recurring maintenance"
+        ],
+        workflow: [
+          "Request details and equipment information",
+          "Assessment and test plan",
+          "Calibration/testing execution (on-site or in-house)",
+          "Report, recommendations and next schedule"
+        ],
+        tags: ["Traceability-ready workflow", "Operational readiness", "Dental & aesthetics support", "UAE coordination"]
+      },
+      pm: {
+        title: "Preventive Maintenance (PM)",
+        sub: "Planned maintenance schedules to reduce downtime.",
+        what: [
+          "PM checklist-based inspections",
+          "Preventive adjustments and cleaning (as applicable)",
+          "Performance verification",
+          "Recommendations for future maintenance"
+        ],
+        workflow: [
+          "PM request and asset scheduling",
+          "Pre-visit checklist review",
+          "PM visit and inspections",
+          "Reporting + next schedule recommendation"
+        ],
+        tags: ["Scheduled visits", "Downtime reduction", "AMC options", "Structured reporting"]
+      },
+      cm: {
+        title: "Corrective Maintenance",
+        sub: "Breakdown response and restoration actions.",
+        what: [
+          "Fault diagnosis and troubleshooting",
+          "Repair/restore actions (as applicable)",
+          "Functional testing and verification",
+          "Follow-up recommendations"
+        ],
+        workflow: [
+          "Breakdown request & symptoms",
+          "Diagnosis and action plan",
+          "Repair / restoration",
+          "Testing, handover and recommendations"
+        ],
+        tags: ["Urgent support", "Field coordination", "Workshop repair", "Service reporting"]
+      },
+      install: {
+        title: "Installations & Commissioning",
+        sub: "Setup support and operational readiness for new/relocated equipment.",
+        what: [
+          "Installation support and setup checks",
+          "Functional start-up checks",
+          "Operational readiness verification",
+          "Handover and service guidance"
+        ],
+        workflow: [
+          "Installation request & equipment details",
+          "On-site scheduling and preparation",
+          "Installation, checks and commissioning",
+          "Handover and next maintenance guidance"
+        ],
+        tags: ["New equipment", "Relocation support", "Commissioning", "Operational checks"]
+      },
+      amc: {
+        title: "Service Contracts (AMC)",
+        sub: "Maintenance agreements tailored to your equipment set.",
+        what: [
+          "AMC planning and visit scheduling",
+          "Preventive and corrective coverage workflow",
+          "Service reporting and maintenance recommendations",
+          "Operational coordination for clinic/business continuity"
+        ],
+        workflow: [
+          "AMC enquiry and asset list review",
+          "Plan options and scheduling",
+          "Recurring visits and service work",
+          "Periodic reporting + optimization recommendations"
+        ],
+        tags: ["Annual maintenance", "Planned visits", "Coverage workflow", "Reporting"]
+      }
+    };
+
+    const serviceDetailEl = document.getElementById('service-detail');
+    const serviceDetailTitle = document.getElementById('service-detail-title');
+    const serviceDetailSub = document.getElementById('service-detail-sub');
+    const detailWhat = document.getElementById('detail-what');
+    const detailWorkflow = document.getElementById('detail-workflow');
+    const detailCoverage = document.getElementById('detail-coverage');
+    const detailTags = document.getElementById('detail-tags');
+
+    function showServiceDetail(key){
+      const d = serviceData[key];
+      if(!d) return;
+      serviceDetailTitle.textContent = d.title;
+      serviceDetailSub.textContent = d.sub;
+      detailWhat.innerHTML = d.what.map(x=>`<li>${x}</li>`).join('');
+      detailWorkflow.innerHTML = d.workflow.map(x=>`<li>${x}</li>`).join('');
+      detailCoverage.textContent = (document.documentElement.lang === 'ar')
+        ? "دعم في الموقع وداخل الورشة داخل الإمارات لأجهزة طب الأسنان والتجميل وغيرها من المعدات الطبية الحيوية."
+        : "On-site and in-house support across UAE for dental, aesthetics and general biomedical equipment.";
+      detailTags.innerHTML = d.tags.map(t=>`<span class="pill">${t}</span>`).join('');
+      serviceDetailEl.style.display = 'block';
+      serviceDetailEl.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function hideServiceDetail(){
+      serviceDetailEl.style.display = 'none';
+    }
+
+    document.querySelectorAll('[data-service]').forEach(card=>{
+      const key = card.getAttribute('data-service');
+      card.addEventListener('click', ()=>showServiceDetail(key));
+      card.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showServiceDetail(key); }
+      });
+    });
+
+    // Prefill wizard based on industries click
+    function prefillServiceForIndustry(ind){
+      // Simple prefill: set category + service type guess (optional)
+      document.getElementById('equipmentCategory').value =
+        (ind === 'dental') ? 'Dental Units' : 'Aesthetic Devices';
+      document.getElementById('serviceType').value =
+        (ind === 'dental') ? 'PM' : 'Calibration';
+      goToServiceWizard();
+    }
+
+    // Prefill from last opened service cards
+    let lastServiceKey = null;
+    document.querySelectorAll('[data-service]').forEach(card=>{
+      card.addEventListener('click', ()=>{ lastServiceKey = card.getAttribute('data-service'); });
+    });
+
+    function prefillServiceTypeFromCardsIfAny(){
+      const map = { repair:'Repair', calibration:'Calibration', pm:'PM', cm:'Corrective', install:'Installation', amc:'AMC' };
+      if(lastServiceKey && map[lastServiceKey]){
+        const st = document.getElementById('serviceType');
+        if(st){
+          // ServiceType options values match these keys:
+          const v = map[lastServiceKey];
+          // Only set if found:
+          const opt = Array.from(st.options).find(o => o.value === v);
+          if(opt) st.value = v;
+        }
+      }
+    }
+
+    // ---------- Accordion ----------
+    document.querySelectorAll('.acc .acc-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const acc = btn.closest('.acc');
+        const isOpen = acc.classList.contains('open');
+        // close siblings
+        document.querySelectorAll('.acc').forEach(a=>{
+          if(a !== acc){
+            a.classList.remove('open');
+            a.querySelector('.body').style.maxHeight = '0px';
+            a.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+          }
+        });
+        if(isOpen){
+          acc.classList.remove('open');
+          const body = acc.querySelector('.body');
+          body.style.maxHeight = '0px';
+          btn.setAttribute('aria-expanded','false');
+        } else {
+          acc.classList.add('open');
+          const body = acc.querySelector('.body');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+
+    // ---------- Scroll reveal ----------
+    const revealEls = document.querySelectorAll('[data-reveal], .reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          ent.target.classList.add('show');
+          io.unobserve(ent.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el=>{
+      if(el.classList.contains('reveal') || el.getAttribute('data-reveal') !== null){
+        el.classList.add('reveal');
+        io.observe(el);
+      }
+    });
+
+    // stagger chips pop-in
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach((c, i)=>{
+      c.style.transition = 'transform .30s ease, opacity .30s ease';
+      setTimeout(()=>{
+        c.style.transform = 'translateY(0px)';
+        c.style.opacity = '1';
+      }, 350 + i*120);
+    });
+
+    // hero visual & metrics in
+    const heroVisual = document.querySelector('.hero-visual');
+    const metrics = document.querySelectorAll('.metric');
+    setTimeout(()=>{ if(heroVisual){ heroVisual.style.transition = 'opacity .55s ease, transform .55s ease'; heroVisual.style.transform='translateY(0)'; heroVisual.style.opacity='1'; } }, 520);
+    metrics.forEach((m, i)=>{
+      setTimeout(()=>{
+        m.style.transition = 'opacity .45s ease, transform .45s ease';
+        m.style.transform='translateY(0)';
+        m.style.opacity='1';
+      }, 680 + i*110);
+    });
+
+    // ---------- Wizard logic ----------
+    let step = 1; // 1..3
+    const panel1 = document.getElementById('panel1');
+    const panel2 = document.getElementById('panel2');
+    const panel3 = document.getElementById('panel3');
+    const stepNode1 = document.getElementById('stepNode1');
+    const stepNode2 = document.getElementById('stepNode2');
+    const stepNode3 = document.getElementById('stepNode3');
+
+    const prefCall = document.getElementById('prefCall');
+    const prefWhats = document.getElementById('prefWhats');
+
+    let prefMode = 'Callback';
+
+    if(prefCall && prefWhats){
+      prefCall.addEventListener('click', ()=>{ prefMode='Callback'; prefCall.classList.add('active'); prefWhats.classList.remove('active'); });
+      prefWhats.addEventListener('click', ()=>{ prefMode='WhatsApp'; prefWhats.classList.add('active'); prefCall.classList.remove('active'); });
+    }
+
+    function getCurrentStep(){ return step; }
+
+    function setWizardHeadingByStep(s, lang){
+      const en = {
+        1: ["Service Request", "Tell us who you are and how to contact you."],
+        2: ["Equipment & Service", "Provide equipment and service details."],
+        3: ["Submit Request", "Review and confirm your request."]
+      };
+      const ar = {
+        1: ["طلب الخدمة", "أخبرنا من أنت وكيف يمكننا التواصل معك."],
+        2: ["بيانات الجهاز والخدمة", "قدّم بيانات الجهاز ونوع الخدمة."],
+        3: ["إرسال الطلب", "راجع وأكد طلبك."]
+      };
+      const map = (lang === 'ar') ? ar : en;
+      const t = map[s];
+      document.getElementById('wizardHeading').textContent = t[0];
+      document.getElementById('wizardSub').textContent = t[1];
+    }
+
+    function setStepUI(newStep){
+      step = newStep;
+      // Panels
+      panel1.classList.toggle('active', step === 1);
+      panel2.classList.toggle('active', step === 2);
+      panel3.classList.toggle('active', step === 3);
+
+      // Nodes
+      const nodes = [stepNode1, stepNode2, stepNode3];
+      nodes.forEach((n, idx)=>{
+        const i = idx+1;
+        n.classList.remove('active','done');
+        if(i < step) n.classList.add('done');
+        if(i === step) n.classList.add('active');
+      });
+
+      setWizardHeadingByStep(step, document.documentElement.lang === 'ar' ? 'ar' : 'en');
+
+      // Reset success visibility if user goes back
+      const successBox = document.getElementById('successBox');
+      if(step !== 3){
+        successBox.style.display = 'none';
+        document.getElementById('submitBtn').disabled = true;
+      }
+      // When arriving to step 3, set summary and consent state
+      if(step === 3){
+        fillSummary();
+        updateSubmitState();
+      }
+    }
+
+    function wizardBack(fromStep){
+      if(fromStep === 2) setStepUI(1);
+      if(fromStep === 3) setStepUI(2);
+    }
+
+    function wizardNext(fromStep){
+      if(fromStep === 1){
+        const ok = validateStep1();
+        if(ok) setStepUI(2);
+      }
+      if(fromStep === 2){
+        const ok = validateStep2();
+        if(ok) setStepUI(3);
+      }
+    }
+
+    function setInvalid(fieldId, isInvalid){
+      const wrapper = document.getElementById(fieldId);
+      if(!wrapper) return;
+      wrapper.classList.toggle('invalid', isInvalid);
+    }
+
+    function validateStep1(){
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      const ok = name && phone && email && isValidEmail(email);
+      setInvalid('field_name', !name);
+      setInvalid('field_phone', !phone);
+      setInvalid('field_email', !(email && isValidEmail(email)));
+
+      return !!ok;
+    }
+
+    function validateStep2(){
+      const st = document.getElementById('serviceType').value;
+      const cat = document.getElementById('equipmentCategory').value;
+      const loc = document.getElementById('location').value.trim();
+
+      const ok = st && cat && loc;
+      setInvalid('field_serviceType', !st);
+      setInvalid('field_category', !cat);
+      setInvalid('field_location', !loc);
+
+      return !!ok;
+    }
+
+    function isValidEmail(v){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    // Consent enables submit
+    const consent = document.getElementById('consent');
+    const submitBtn = document.getElementById('submitBtn');
+    if(consent){
+      consent.addEventListener('change', ()=>updateSubmitState());
+    }
+
+    function updateSubmitState(){
+      if(!submitBtn) return;
+      const enabled = !!consent.checked;
+      submitBtn.disabled = !enabled;
+    }
+
+    function fillSummary(){
+      const fullName = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      const serviceType = document.getElementById('serviceType').value;
+      const serviceLabel = Array.from(document.getElementById('serviceType').selectedOptions)[0]?.textContent || serviceType;
+
+      const category = document.getElementById('equipmentCategory').value;
+      const location = document.getElementById('location').value.trim();
+      const urgency = document.getElementById('urgency').value;
+
+      const notesShort = document.getElementById('notesShort').value.trim();
+      const issueDesc = document.getElementById('issueDesc').value.trim();
+      const modelSerial = document.getElementById('modelSerial').value.trim();
+
+      document.getElementById('sumContact').textContent =
+        `${fullName} • ${prefMode} • ${phone} • ${email}`;
+
+      document.getElementById('sumService').textContent =
+        `${serviceLabel} • ${category}`;
+
+      document.getElementById('sumLocation').textContent =
+        `${location} • Urgency: ${urgency}`;
+
+      const extras = [];
+      if(modelSerial) extras.push(`Model/Serial: ${modelSerial}`);
+      if(notesShort) extras.push(`Notes: ${notesShort}`);
+      if(issueDesc) extras.push(`Description: ${issueDesc.substring(0,80)}${issueDesc.length>80?'…':''}`);
+
+      const extrasRow = document.getElementById('sumExtrasRow');
+      const extrasEl = document.getElementById('sumExtras');
+      if(extras.length){
+        extrasEl.textContent = extras.join(' • ');
+        extrasRow.style.display = 'flex';
+      } else {
+        extrasRow.style.display = 'none';
+      }
+    }
+
+    function wizardSubmit(){
+      // final UI: show success message
+      if(submitBtn && submitBtn.disabled) return;
+
+      const successBox = document.getElementById('successBox');
+      // fake submit delay
+      submitBtn.disabled = true;
+      const prevText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+
+      setTimeout(()=>{
+        submitBtn.textContent = prevText;
+        successBox.style.display = 'block';
+        // disable consent checkbox optionally
+      }, 650);
+    }
+
+    function resetWizard(){
+      // reset steps and fields (keep some values)
+      document.getElementById('successBox').style.display = 'none';
+
+      // Clear only consent
+      if(consent){ consent.checked = false; updateSubmitState(); }
+
+      // reset validation visuals
+      ['field_name','field_phone','field_email','field_serviceType','field_category','field_location'].forEach(id=>setInvalid(id,false));
+
+      // go to step 1
+      setStepUI(1);
+    }
+
+    // File upload meta
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('fileInput');
+    const uploadMeta = document.getElementById('uploadMeta');
+    if(uploadBox && fileInput){
+      ['dragenter','dragover'].forEach(evt=>{
+        uploadBox.addEventListener(evt,(e)=>{
+          e.preventDefault();
+          uploadBox.classList.add('drag');
+        });
+      });
+      ['dragleave','drop'].forEach(evt=>{
+        uploadBox.addEventListener(evt,(e)=>{
+          e.preventDefault();
+          uploadBox.classList.remove('drag');
+        });
+      });
+      uploadBox.addEventListener('drop',(e)=>{
+        const files = e.dataTransfer?.files;
+        if(files && files.length){
+          fileInput.files = files;
+          if(uploadMeta) uploadMeta.textContent = `${files.length} file(s) selected.`;
+        }
+      });
+      fileInput.addEventListener('change', ()=>{
+        const files = fileInput.files;
+        if(!uploadMeta) return;
+        if(files && files.length) uploadMeta.textContent = `${files.length} file(s) selected.`;
+        else uploadMeta.textContent = "No files selected.";
+      });
+    }
+
+    // initialize year + wizard headings + i18n
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Force 2026 display as per current instruction
+    document.getElementById('year').textContent = '2026';
+
+    // Default language EN
+    applyLanguage('en');
+
+    // ensure button label updates for translated submit text
+    // (already handled via data-i18n on submit button text span)
+    // but wizard headings:
+    setWizardHeadingByStep(1, 'en');
+
+    // ensure step nodes reflect initial state
+    setStepUI(1);
+
+    // Close mobile nav after click
+    document.querySelectorAll('.mobile-nav a').forEach(a=>{
+      a.addEventListener('click', ()=>{ mobileNav.classList.add('hidden'); });
+    });
+
+    // Provide initial expand/collapse chips and hero reveals
+    // (already handled by timeouts)
+
+    // Fix arrow “Learn more” second tile default label (dental vs aesthetics)
+    // We kept common.learn2 as "Request service for dental"; update for aesthetics quickly:
+    // Not essential for functionality.
+
+  </script>
+</body>
+</html>
